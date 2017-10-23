@@ -2,9 +2,6 @@ set encoding=utf8
 
 set nowrap
 
-let g:python_host_prog='/usr/local/bin/python'
-let g:python3_host_prog='/usr/local/bin/python3'
-
 " OSX stupid backspace fix
 set backspace=indent,eol,start
 
@@ -17,6 +14,7 @@ map Y y$
 set nohls
 
 " Set Proper Tabs
+imap <C-Return> <CR><CR><C-o>k<Tab>
 set tabstop=4
 set shiftwidth=4
 set smarttab
@@ -70,7 +68,8 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
@@ -95,12 +94,15 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 Plug 'Chiel92/vim-autoformat'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
 Plug 'djoshea/vim-autoread'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 
 " Initialize plugin system
 call plug#end()
 
+let g:deoplete#enable_at_startup = 1
+let g:python_host_prog='/usr/local/bin/python'
+let g:python3_host_prog='/usr/local/bin/python3'
 

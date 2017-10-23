@@ -4,6 +4,7 @@ The configuration file `init.vim` has all the plugins that I use with NeoVIM. Th
 
 - [fzf](https://github.com/junegunn/fzf)
 - [Syntastic](https://github.com/vim-syntastic/syntastic)
+- [jedi](https://github.com/davidhalter/jedi)
 
 ## Install Plugins
 
