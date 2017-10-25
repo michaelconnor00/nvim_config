@@ -1,38 +1,3 @@
-set encoding=utf8
-
-set nowrap
-
-" OSX stupid backspace fix
-set backspace=indent,eol,start
-
-set relativenumber " show relative line numbers
-
-" Yank to end of line
-map Y y$
-
-" Tunr off search highlighting
-set nohls
-
-" Set Proper Tabs
-imap <C-Return> <CR><CR><C-o>k<Tab>
-set tabstop=4
-set shiftwidth=4
-set smarttab
-set expandtab
-
-" Always display the status line
-set laststatus=2
-
-" Enable Elite mode, No ARRRROWWS!!!!
-let g:elite_mode=1
-
-" Enable highlighting of the current line
-set cursorline
-
-" Theme and Styling 
-syntax on
-set t_Co=256
-
 
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
@@ -46,11 +11,6 @@ call plug#begin('~/.vim/plugged')
 
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-" Trigger configuration. Do not use <tab> if it collides
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
@@ -76,6 +36,73 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'https://github.com/vim-syntastic/syntastic.git'
 
+Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+
+Plug 'Chiel92/vim-autoformat'
+
+Plug 'djoshea/vim-autoread'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+
+Plug 'sheerun/vim-polyglot'
+
+" Themes
+Plug 'mhartington/oceanic-next'
+Plug 'joshdick/onedark.vim'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
+
+call plug#end()
+
+" CONFIG
+set colorcolumn=100  " Highlight color for wrapping
+set encoding=utf8
+
+set nowrap
+
+" OSX stupid backspace fix
+set backspace=indent,eol,start
+
+set relativenumber " show relative line numbers
+
+" Yank to end of line
+map Y y$
+
+" Tunr off search highlighting
+"set nohls
+set smartcase
+
+" Set Proper Tabs
+imap <C-Return> <CR><CR><C-o>k<Tab>
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set autoindent
+let python_highlight_all=1
+
+"set showmatch   " Show matching brackets
+set gdefault    " use g by default with sed replacement
+
+" Enable highlighting of the current line
+"set cursorline
+
+"Ultisnips
+" Trigger configuration. Do not use <tab> if it collides
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" CtrlP
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 " Syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -88,21 +115,27 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_quiet_messages = {"!level": "errors"}                                                                                                                                                                    
 let g:syntastic_python_flake8_args = "--ignore=E501,E266,E402"
 
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-Plug 'Chiel92/vim-autoformat'
-
-Plug 'djoshea/vim-autoread'
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-
-" Initialize plugin system
-call plug#end()
-
+" Deoplete Settings
 let g:deoplete#enable_at_startup = 1
 let g:python_host_prog='/usr/local/bin/python'
 let g:python3_host_prog='/usr/local/bin/python3'
+
+" OceanicNext, Or if you have Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" Theme
+syntax enable
+syntax on
+colorscheme onedark
+set t_Co=256
+
+" Airline config
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+"let g:airline_theme='gruvbox'
+let g:airline#extensions#hunks#enabled=0
+let g:airline#extensions#branch#enabled=1
+
 
