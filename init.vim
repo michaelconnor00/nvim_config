@@ -10,31 +10,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " Multiple Plug commands can be written in a single line using | separators
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
-" Using a non-master branch
-"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-"Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-" Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" Unmanaged plugin (manually installed and updated)
-"Plug '~/my-prototype-plugin'
-
-Plug 'https://github.com/vim-syntastic/syntastic.git'
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 
@@ -50,6 +26,7 @@ Plug 'sheerun/vim-polyglot'
 " Themes
 Plug 'mhartington/oceanic-next'
 Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -58,23 +35,31 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
 
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 " CONFIG
 set colorcolumn=100  " Highlight color for wrapping
 set encoding=utf8
 
-set nowrap
+"set nowrap
+set wrap linebreak nolist    " soft line wrap at screen edge
 
 " OSX stupid backspace fix
 set backspace=indent,eol,start
 
 set relativenumber " show relative line numbers
 
-" Yank to end of line
-map Y y$
+map Y y$        " Yank to end of line
+nnoremap H gT   " Make H move to prev tab
+nnoremap L gt   " Make L move to next tab
 
-" Tunr off search highlighting
+" Turn off search highlighting
 "set nohls
 set smartcase
 
@@ -87,12 +72,10 @@ set smarttab
 set expandtab
 set autoindent
 let python_highlight_all=1
+set laststatus=0
 
 "set showmatch   " Show matching brackets
 set gdefault    " use g by default with sed replacement
-
-" Enable highlighting of the current line
-"set cursorline
 
 "Ultisnips
 " Trigger configuration. Do not use <tab> if it collides
@@ -120,22 +103,22 @@ let g:deoplete#enable_at_startup = 1
 let g:python_host_prog='/usr/local/bin/python'
 let g:python3_host_prog='/usr/local/bin/python3'
 
-" OceanicNext, Or if you have Neovim >= 0.1.5
-if (has("termguicolors"))
- set termguicolors
-endif
-
-" Theme
-syntax enable
-syntax on
-colorscheme onedark
-set t_Co=256
-
 " Airline config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
-"let g:airline_theme='gruvbox'
-let g:airline#extensions#hunks#enabled=0
-let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline_exclude_preview = 0
+"let g:airline_section_error = 0
+let g:airline_section_warning = 0
+let g:airline_section_y = 0
+let g:airline_theme='gruvbox'
 
+" Theme
+syntax enable
+"syntax on
+colorscheme gruvbox
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set background=dark    " Setting dark mode
 
