@@ -41,7 +41,14 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'vim-syntastic/syntastic'
+
+"Plug 'ludovicchabant/vim-gutentags'
+
 call plug#end()
+
+" GutenTags
+"set statusline+=%{gutentags#statusline()}
 
 " CONFIG
 set colorcolumn=100  " Highlight color for wrapping
@@ -58,6 +65,23 @@ set relativenumber " show relative line numbers
 map Y y$        " Yank to end of line
 nnoremap H gT   " Make H move to prev tab
 nnoremap L gt   " Make L move to next tab
+nnoremap K i<CR><Esc>  " Make K split a line, opposite of J
+
+" Copy/Paste system clipboard
+function! ClipboardYank()
+  call system('pbcopy', @@)
+endfunction
+function! ClipboardPaste()
+  let @@ = system('pbpaste')
+endfunction
+
+vnoremap <silent> y y:call ClipboardYank()<cr>
+vnoremap <silent> d d:call ClipboardYank()<cr>
+nnoremap <silent> p :call ClipboardPaste()<cr>p
+
+" Esc key mapping for easy exit from insert
+inoremap jk <esc>
+inoremap kj <esc>
 
 " Turn off search highlighting
 "set nohls
@@ -85,6 +109,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " CtrlP
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_extensions = ['tag']
 
 " Syntastic settings
 set statusline+=%#warningmsg#
