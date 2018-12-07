@@ -2,7 +2,7 @@
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Make sure you use single quotes
 
@@ -125,8 +125,8 @@ let g:syntastic_python_flake8_args = "--ignore=E501,E266,E402"
 
 " Deoplete Settings
 let g:deoplete#enable_at_startup = 1
-let g:python_host_prog='/usr/local/bin/python'
-let g:python3_host_prog='/usr/local/bin/python3'
+" let g:python_host_prog='/usr/local/bin/python'
+" let g:python3_host_prog='/usr/local/bin/python3'
 
 " Airline config
 let g:airline#extensions#tabline#enabled = 1
